@@ -1,0 +1,281 @@
+
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  min-height: 100vh;
+  color: #f8fafc;
+  background: #0b1020;
+  overflow-x: hidden;
+}
+
+/* ===== BACKGROUND ===== */
+.container {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 30px;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(124, 58, 237, 0.35),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 85% 80%,
+      rgba(236, 72, 153, 0.25),
+      transparent 35%
+    ),
+    linear-gradient(135deg, #0b1020, #15132b, #101827);
+}
+
+/* Vong sang trang tri */
+.container::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 550px;
+  height: 550px;
+  border-radius: 50%;
+
+  background: linear-gradient(
+    135deg,
+    #7c3aed,
+    #ec4899,
+    #38bdf8
+  );
+
+  filter: blur(100px);
+  opacity: 0.22;
+  animation: glowMove 10s ease-in-out infinite alternate;
+}
+
+/* ===== PROFILE CARD ===== */
+.profile-card {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  padding: 45px 35px;
+  text-align: center;
+
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 28px;
+
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.4),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+
+  overflow: hidden;
+
+  animation: cardAppear 1s ease-out both;
+
+  transition:
+    transform 0.45s ease,
+    box-shadow 0.45s ease,
+    border-color 0.45s ease;
+}
+
+/* Vien gradient */
+.profile-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+
+  background: linear-gradient(
+    135deg,
+    rgba(168, 85, 247, 0.7),
+    transparent 40%,
+    rgba(236, 72, 153, 0.5)
+  );
+
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+
+  pointer-events: none;
+}
+
+.profile-card:hover {
+  transform: translateY(-12px) scale(1.02);
+
+  border-color: rgba(192, 132, 252, 0.5);
+
+  box-shadow:
+    0 35px 80px rgba(124, 58, 237, 0.2),
+    0 0 35px rgba(168, 85, 247, 0.12);
+}
+
+/* ===== TITLE ===== */
+.profile-card h1 {
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  margin-bottom: 15px;
+
+  background: linear-gradient(
+    90deg,
+    #c4b5fd,
+    #f0abfc,
+    #93c5fd
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  animation: titleGlow 4s ease-in-out infinite alternate;
+}
+
+.profile-card h2 {
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 25px;
+  letter-spacing: 0.3px;
+}
+
+/* ===== INFORMATION ===== */
+.profile-card p {
+  color: #cbd5e1;
+  font-size: 1rem;
+  line-height: 1.8;
+
+  margin: 18px 0;
+  padding: 12px 15px;
+
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
+}
+
+.profile-card p:hover {
+  background: rgba(255, 255, 255, 0.09);
+  transform: translateX(4px);
+}
+
+.profile-card strong {
+  color: #c4b5fd;
+  font-weight: 700;
+}
+
+/* ===== GITHUB BUTTON ===== */
+.profile-card h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  line-height: 1.4;
+
+  padding: 8px 0 12px;
+  margin-bottom: 15px;
+
+  overflow: visible;
+}
+
+.greeting-text {
+  display: inline-block;
+  padding: 2px 0 5px;
+
+  background: linear-gradient(
+    90deg,
+    #c4b5fd,
+    #f0abfc,
+    #93c5fd
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.greeting-emoji {
+  display: inline-block;
+  color: white;
+
+  font-size: 0.85em;
+  line-height: 1.4;
+
+  animation: waveHand 2s ease-in-out infinite;
+}
+
+/* ===== CURSOR LIGHT EFFECT ===== */
+.profile-card {
+  isolation: isolate;
+}
+
+.profile-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: radial-gradient(
+    250px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(168, 85, 247, 0.25),
+    rgba(236, 72, 153, 0.10) 40%,
+    transparent 75%
+  );
+
+  opacity: 0;
+  transition: opacity 0.3s ease;
+
+  pointer-events: none;
+  z-index: -1;
+}
+
+.profile-card:hover::after {
+  opacity: 1;
+}
+
+/* ===== HIỆU ỨNG EMOJI VẪY TAY ===== */
+@keyframes waveHand {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(20deg);
+  }
+
+  50% {
+    transform: rotate(-10deg);
+  }
+
+  75% {
+    transform: rotate(15deg);
+  }
+}
+
+/* ===== HOVER THẺ ===== */
+.profile-card:hover {
+  transform: translateY(-10px) scale(1.015);
+}
